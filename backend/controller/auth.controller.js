@@ -5,6 +5,8 @@ import generateTokenandSetCookie from "../utils/generateToken.js";
 export const signup = async (req, res) => {
   try {
     const { fullName, username, password, confirmPassword, gender } = req.body;
+    console.log("Received form data:", { fullName, username, password, confirmPassword, gender }); // Ajouter ce log
+
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "Mot de passe ne coresspond pas" });
     }
@@ -43,11 +45,13 @@ export const signup = async (req, res) => {
       res.status(400).json({ error: "Donnée invalide" });
     }
   } catch (error) {
+    console.log("Error in signup:", error); // Ajouter ce log
     res.status(500).json({
       error: "internal error MESSAGE",
     });
   }
 };
+
 
 export const login = async (req, res) => {
   try {
